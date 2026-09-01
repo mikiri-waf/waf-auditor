@@ -1,16 +1,16 @@
 # Mikiri WAF Auditor
 
-> ## ⚠️ Legal & Ethical Use
->
-> **This tool is intended solely for authorized security testing.** Only use it against systems
-> you own or for which you have explicit, written permission to test. Sending attack payloads to
-> systems without authorization may be illegal under computer-misuse, unauthorized-access, and
-> other laws in your jurisdiction, and may violate contracts and acceptable-use policies.
->
-> **Do not use WAF Auditor for any criminal, malicious, or otherwise unlawful purpose.** You are
-> solely responsible for how you use it and for obtaining proper authorization. The authors and
-> Mikiri Security, LLC accept no liability for misuse or for any damage resulting from its use.
-> By using this tool you agree to these terms.
+## Legal & Ethical Use
+
+**This tool is intended solely for authorized security testing.** Only use it against systems
+you own or for which you have explicit, written permission to test. Sending attack payloads to
+systems without authorization may be illegal under computer-misuse, unauthorized-access, and
+other laws in your jurisdiction, and may violate contracts and acceptable-use policies.
+
+**Do not use WAF Auditor for any criminal, malicious, or otherwise unlawful purpose.** You are
+solely responsible for how you use it and for obtaining proper authorization. The authors and
+Mikiri Security, LLC accept no liability for misuse or for any damage resulting from its use.
+By using this tool you agree to these terms.
 
 A technical tool for testing any WAF for **attack bypasses** and **false positives**.
 
