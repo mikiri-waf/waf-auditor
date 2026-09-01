@@ -43,7 +43,7 @@ def _brand_cmap():
 
 
 def _transport_label(value: str) -> str:
-    """Collapse HTTP versions into a single 'HTTP'; keep WebSocket separate."""
+    """Collapse HTTP/1.1 and HTTP/2 into a single 'HTTP'; keep WebSocket separate."""
     return "WS" if value == "ws" else "HTTP"
 
 
@@ -111,7 +111,7 @@ def _bar_transport(score: Score, out: Path) -> Path | None:
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    # Collapse HTTP/1.1, HTTP/2, HTTP/3 into a single "HTTP" bucket; keep WS separate.
+    # Collapse HTTP/1.1 and HTTP/2 into a single "HTTP" bucket; keep WS separate.
     merged: dict[str, list[int]] = {}  # label -> [detected, attacks, false_positive, legit]
     for k, v in score.by_transport.items():
         if not (v.attacks or v.legit):

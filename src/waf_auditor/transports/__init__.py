@@ -29,8 +29,4 @@ def build_transport(transport: Transport, cfg: RunConfig) -> BaseTransport:
         from .websocket import WebSocketTransport
 
         return WebSocketTransport(verify_tls=cfg.target.verify_tls, timeout_s=cfg.timeout_s)
-    if transport == Transport.HTTP3:
-        from .http3 import Http3Transport
-
-        return Http3Transport()
     raise ValueError(f"unknown transport {transport!r}")

@@ -22,7 +22,6 @@ Output comes as a console table, machine-readable JSON, and a PDF with charts.
 python3.11 -m venv .venv
 source .venv/bin/activate
 pip install -e '.[dev]'          # core + tests/linter
-# optional: pip install -e '.[http3]'   # HTTP/3 (QUIC), Phase 3
 ```
 
 ## Quick start
@@ -58,7 +57,7 @@ nothing about transport, injection point, or encoding — the engine combines al
 - **Encoder-chain** — how it is encoded (composable): `url`, `url_double`, `url_triple`,
   `base64`, `html_entity_*`, `unicode_escape`, `charset_utf16`, … plus the body transport
   modifiers `gzip`/`deflate`/`chunked`.
-- **Transport** — `http1`, `http2`, `ws` (v1); `http3` is Phase 3.
+- **Transport** — `http1`, `http2`, `ws`.
 
 Block detection is **based on the HTTP response status code** (a configurable set of statuses
 per target).
@@ -103,8 +102,8 @@ tokens) — useful for exercising the full pipeline.
 ## Roadmap
 
 - **Phase 1 (done):** HTTP/1.1+2, WebSocket transport, all axes, console/JSON/PDF.
-- **Phase 2:** richer WebSocket scenarios, a "glossy" PDF (WeasyPrint).
-- **Phase 3:** HTTP/3 (QUIC) on `aioquic`, deeper multipart/XML placements, expanded payload sets.
+- **Phase 2:** richer WebSocket scenarios, a "glossy" PDF (WeasyPrint), deeper multipart/XML
+  placements, expanded payload sets.
 
 ---
 Copyright (c) Mikiri Security, LLC
