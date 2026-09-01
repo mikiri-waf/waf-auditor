@@ -14,7 +14,7 @@
 
 A technical tool for testing any WAF for **attack bypasses** and **false positives**.
 
-Output comes as a console table, machine-readable JSON, and a marketing-grade PDF with charts.
+Output comes as a console table, machine-readable JSON, and a PDF with charts.
 
 ## Installation
 
