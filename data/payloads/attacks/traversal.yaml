@@ -1,0 +1,33 @@
+suite: traversal
+kind: attack
+category: traversal
+expected: blocked
+severity: high
+description: "Path Traversal — Mikiri curated set"
+references: ["CWE-22", "OWASP-A01:2021"]
+
+default_placements: [url_query, url_path, header, cookie]
+default_encoders:
+  - [none]
+  - [url]
+  - [url_double]
+  - [url_triple]
+
+payloads:
+  - id: trav-unix-0001
+    raw: "../../../../etc/passwd"
+    tags: [unix]
+  - id: trav-win-0002
+    raw: "..\\..\\..\\..\\windows\\win.ini"
+    tags: [windows]
+  - id: trav-enc-0003
+    raw: "%2e%2e%2f%2e%2e%2f%2e%2e%2fetc%2fpasswd"
+    encoders: [[none]]
+    tags: [pre-encoded]
+  - id: trav-dotdot-0004
+    raw: "....//....//....//etc/passwd"
+    tags: [filter-evasion]
+  - id: trav-utf8-0005
+    raw: "..%c0%af..%c0%af..%c0%afetc/passwd"
+    encoders: [[none]]
+    tags: [overlong-utf8]

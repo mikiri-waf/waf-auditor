@@ -1,0 +1,45 @@
+suite: fp-common
+kind: false-positive
+category: false-positive
+expected: passed
+severity: info
+description: "Legitimate-but-suspicious inputs that must NOT be blocked (false positives)"
+references: []
+
+default_placements: [url_query, header, cookie, body_urlencoded, body_json]
+default_encoders:
+  - [none]
+  - [url]
+
+payloads:
+  - id: fp-name-0001
+    raw: "O'Brien"
+    tags: [apostrophe, surname]
+  - id: fp-select-0002
+    raw: "Please select the union option from the dropdown"
+    tags: [sql-keywords-in-prose]
+  - id: fp-address-0003
+    raw: "1 OR 2 Main Street, Apt 3"
+    tags: [address]
+  - id: fp-code-0004
+    raw: "SELECT * FROM orders WHERE id = 42 -- example query in a code comment"
+    tags: [code-snippet]
+  - id: fp-path-0005
+    raw: "/usr/local/share/docs/readme.txt"
+    tags: [absolute-path]
+  - id: fp-html-0006
+    raw: "I <3 the <b>bold</b> tag but not <script> tags"
+    tags: [angle-brackets]
+  - id: fp-shell-0007
+    raw: "cat and dog | best pets && more"
+    tags: [shell-metachars-in-prose]
+  - id: fp-json-0008
+    raw: "{\"comment\": \"price < 100 && quantity > 0\"}"
+    tags: [json-operators]
+  - id: fp-password-0009
+    raw: "P@ssw0rd!;DROP"
+    placements: [body_json, body_urlencoded]
+    tags: [password-field]
+  - id: fp-search-0010
+    raw: "how to prevent ../ path traversal in nginx"
+    tags: [search-query]

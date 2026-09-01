@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "waf-auditor"
+version = "0.1.0"
+description = "Mikiri WAF Auditor — bypass & false-positive testing for any WAF"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Proprietary" }
+authors = [{ name = "Romanov R.", email = "info@mikiri.ai" }]
+dependencies = [
+    "httpx[http2]>=0.27",
+    "websockets>=12",
+    "pydantic>=2.6",
+    "pydantic-settings>=2.2",
+    "PyYAML>=6.0",
+    "rich>=13.7",
+    "matplotlib>=3.8",
+    "reportlab>=4.1",
+    "jsonschema>=4.21",
+]
+
+[project.optional-dependencies]
+http3 = ["aioquic>=1.0"]
+glossy-pdf = ["weasyprint>=61"]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.23", "ruff>=0.4"]
+
+[project.scripts]
+waf-auditor = "waf_auditor.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+waf_auditor = ["../../data/**/*.yaml", "../../data/**/*.json"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

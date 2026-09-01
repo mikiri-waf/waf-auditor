@@ -1,0 +1,34 @@
+suite: lfi
+kind: attack
+category: lfi
+expected: blocked
+severity: high
+description: "Local File Inclusion — Mikiri curated set"
+references: ["CWE-98", "OWASP-A03:2021"]
+
+default_placements: [url_query, url_path, header, cookie, body_urlencoded]
+default_encoders:
+  - [none]
+  - [url]
+  - [url_double]
+
+payloads:
+  - id: lfi-passwd-0001
+    raw: "/etc/passwd"
+    tags: [unix]
+  - id: lfi-proc-0002
+    raw: "/proc/self/environ"
+    tags: [unix, proc]
+  - id: lfi-null-0003
+    raw: "/etc/passwd%00"
+    encoders: [[none], [url]]
+    tags: [null-byte]
+  - id: lfi-wrapper-0004
+    raw: "php://filter/convert.base64-encode/resource=index.php"
+    tags: [php-wrapper]
+  - id: lfi-data-0005
+    raw: "data://text/plain;base64,PD9waHAgcGhwaW5mbygpOz8+"
+    tags: [php-wrapper, data]
+  - id: lfi-win-0006
+    raw: "C:\\Windows\\System32\\drivers\\etc\\hosts"
+    tags: [windows]

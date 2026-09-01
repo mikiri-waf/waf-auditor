@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Mikiri WAF Auditor payload suite",
+  "type": "object",
+  "required": ["suite", "kind", "category", "expected", "severity", "payloads"],
+  "properties": {
+    "suite": { "type": "string", "minLength": 1 },
+    "kind": { "enum": ["attack", "false-positive"] },
+    "category": { "type": "string", "minLength": 1 },
+    "expected": { "enum": ["blocked", "passed"] },
+    "severity": { "enum": ["info", "low", "medium", "high", "critical"] },
+    "description": { "type": "string" },
+    "references": { "type": "array", "items": { "type": "string" } },
+    "default_placements": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/placement" }
+    },
+    "default_encoders": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/encoderChain" }
+    },
+    "payloads": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "raw"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "raw": { "type": "string" },
+          "placements": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/placement" }
+          },
+          "encoders": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/encoderChain" }
+          },
+          "tags": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "placement": {
+      "enum": [
+        "url_path", "url_query", "header", "cookie",
+        "body_urlencoded", "body_json", "body_multipart",
+        "body_xml", "body_raw", "ws_message"
+      ]
+    },
+    "encoderChain": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}
