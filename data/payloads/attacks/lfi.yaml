@@ -3,7 +3,7 @@ kind: attack
 category: lfi
 expected: blocked
 severity: high
-description: "Local File Inclusion — Mikiri curated set"
+description: "Local File Inclusion — WAF Auditor curated set"
 references: ["CWE-98", "OWASP-A03:2021"]
 
 default_placements: [url_query, url_path, header, cookie, body_urlencoded]

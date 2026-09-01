@@ -1,5 +1,5 @@
 """
-Mikiri WAF Auditor - tests
+WAF Auditor - tests
 Copyright (c) Mikiri Security, LLC
 """
 

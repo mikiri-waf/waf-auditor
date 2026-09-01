@@ -3,7 +3,7 @@ kind: attack
 category: sqli
 expected: blocked
 severity: critical
-description: "SQL Injection — Mikiri curated set"
+description: "SQL Injection — WAF Auditor curated set"
 references: ["CWE-89", "OWASP-A03:2021"]
 
 default_placements: [url_query, header, cookie, body_urlencoded, body_json]

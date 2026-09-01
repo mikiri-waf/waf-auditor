@@ -1,5 +1,5 @@
 """
-Mikiri WAF Auditor
+WAF Auditor
 Copyright (c) Mikiri Security, LLC
 Author: Romanov R.
 """

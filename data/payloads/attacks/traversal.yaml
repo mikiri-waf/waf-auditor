@@ -3,7 +3,7 @@ kind: attack
 category: traversal
 expected: blocked
 severity: high
-description: "Path Traversal — Mikiri curated set"
+description: "Path Traversal — WAF Auditor curated set"
 references: ["CWE-22", "OWASP-A01:2021"]
 
 default_placements: [url_query, url_path, header, cookie]

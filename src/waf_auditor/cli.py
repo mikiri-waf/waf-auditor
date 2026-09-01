@@ -1,5 +1,5 @@
 """
-Mikiri WAF Auditor
+WAF Auditor
 Copyright (c) Mikiri Security, LLC
 Author: Romanov R.
 
@@ -35,7 +35,7 @@ from .report.scoring import score_results
 def _parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="waf-auditor",
-        description="Mikiri WAF Auditor — test any WAF for bypasses and false positives.",
+        description="WAF Auditor — test any WAF for bypasses and false positives.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     p.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
@@ -165,7 +165,7 @@ def main(argv: list[str] | None = None) -> int:
     eng = engine.Engine(cfg)
     total = len(eng.build_cases(payloads))
     console.print(
-        f"[bold]Mikiri WAF Auditor[/bold] → {target.url}  "
+        f"[bold]WAF Auditor[/bold] → {target.url}  "
         f"({total} test cases, transports: {', '.join(t.value for t in cfg.transports)})"
     )
 

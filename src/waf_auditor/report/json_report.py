@@ -1,5 +1,5 @@
 """
-Mikiri WAF Auditor
+WAF Auditor
 Copyright (c) Mikiri Security, LLC
 Author: Romanov R.
 
@@ -19,7 +19,7 @@ from .scoring import Score, summary_dict
 
 def build_document(cfg: RunConfig, score: Score, results: list[Result]) -> dict:
     return {
-        "tool": "Mikiri WAF Auditor",
+        "tool": "WAF Auditor",
         "version": "0.1.0",
         "generated_at": datetime.now(UTC).isoformat(),
         "target": {

@@ -1,5 +1,5 @@
 """
-Mikiri WAF Auditor
+WAF Auditor
 Copyright (c) Mikiri Security, LLC
 Author: Romanov R.
 
@@ -19,12 +19,12 @@ from ..config import RunConfig
 from ..models import Result
 from .scoring import Score, bypasses, false_positives
 
-# Mikiri brand palette (derived from the mikiri.ai product UI: deep navy + brand blue
+# Mikiri WAF brand palette (derived from the mikiri.ai product UI: deep navy + brand blue
 # on slate greys, with emerald/amber/red reserved for detection semantics).
 NAVY = "#080d17"      # darkest brand surface — KPI header / title bar
 INK = "#1e293b"       # slate-800 — headings and primary text
 MUTED = "#64748b"     # slate-500 — secondary text
-ACCENT = "#3b82f6"    # Mikiri brand blue
+ACCENT = "#3b82f6"    # Mikiri WAF brand blue
 ACCENT_DK = "#2563eb"  # brand blue, pressed
 GOOD = "#10b981"      # emerald — strong detection
 WARN = "#f59e0b"      # amber — partial detection
@@ -36,7 +36,7 @@ _GRADE_HEX = {"A+": GOOD, "A": GOOD, "B": ACCENT, "C": WARN, "D": WARN, "F": BAD
 
 
 def _brand_cmap():
-    """Sequential red -> amber -> emerald colormap in Mikiri's semantic colors."""
+    """Sequential red -> amber -> emerald colormap in Mikiri WAF's semantic colors."""
     from matplotlib.colors import LinearSegmentedColormap
 
     return LinearSegmentedColormap.from_list("mikiri_rag", [BAD, WARN, GOOD])
@@ -286,7 +286,7 @@ def write(
         y = 0.9 * cm
         canvas.setFont("Helvetica", 7.5)
         canvas.setFillColor(C_MUTED)
-        canvas.drawString(margin, y, "Mikiri WAF Auditor — a product of Mikiri Security, LLC")
+        canvas.drawString(margin, y, "WAF Auditor — a product of Mikiri Security, LLC")
         canvas.drawCentredString(page_w / 2, y, f"Page {doc.page}")
         canvas.drawRightString(page_w - margin, y, f"v{__version__} · {generated}")
         canvas.restoreState()
@@ -313,7 +313,7 @@ def write(
     banner = Table(
         [[Paragraph("MIKIRI SECURITY", kicker)],
          [Paragraph("WAF Security Assessment", cover_title)],
-         [Paragraph("Check your WAF before an attacker does", cover_sub)]],
+        ],
         colWidths=[content_w],
     )
     banner.setStyle(TableStyle([
@@ -461,7 +461,7 @@ def write(
     ))
     story.append(Spacer(1, 0.2 * cm))
     story.append(Paragraph(
-        "<i>Mikiri WAF blocks the encoding- and placement-based bypasses highlighted in this "
+        "<i>WAF blocks the encoding- and placement-based bypasses highlighted in this "
         "report out of the box.</i>", small))
 
     # ---- methodology & scope --------------------------------------------------------------------
@@ -515,8 +515,8 @@ def write(
     story.append(cta)
 
     doc = SimpleDocTemplate(
-        str(path), pagesize=A4, title="Mikiri WAF Security Assessment",
-        author="Mikiri WAF Auditor",
+        str(path), pagesize=A4, title="WAF Security Assessment",
+        author="WAF Auditor",
         leftMargin=margin, rightMargin=margin, topMargin=1.7 * cm, bottomMargin=1.7 * cm,
     )
     doc.build(story, onFirstPage=_footer, onLaterPages=_header)

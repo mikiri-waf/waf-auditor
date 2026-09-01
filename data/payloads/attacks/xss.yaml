@@ -3,7 +3,7 @@ kind: attack
 category: xss
 expected: blocked
 severity: high
-description: "Cross-Site Scripting — Mikiri curated set"
+description: "Cross-Site Scripting — WAF Auditor curated set"
 references: ["CWE-79", "OWASP-A03:2021"]
 
 default_placements: [url_query, header, cookie, body_urlencoded, body_json, body_multipart]

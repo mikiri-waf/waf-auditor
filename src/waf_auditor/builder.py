@@ -1,5 +1,5 @@
 """
-Mikiri WAF Auditor
+WAF Auditor
 Copyright (c) Mikiri Security, LLC
 Author: Romanov R.
 
@@ -15,7 +15,7 @@ from .config import TargetConfig
 from .encoders import apply_body_modifiers, apply_chain, body_modifiers
 from .models import Body, Placement, RequestSpec, TestCase
 
-_MULTIPART_BOUNDARY = "----MikiriWafAuditorBoundary7MA4YWxkTrZu0gW"
+_MULTIPART_BOUNDARY = "----WafAuditorBoundary7MA4YWxkTrZu0gW"
 
 
 def build(case: TestCase, target: TargetConfig) -> RequestSpec:

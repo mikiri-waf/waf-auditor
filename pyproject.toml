@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "waf-auditor"
 version = "0.1.0"
-description = "Mikiri WAF Auditor — bypass & false-positive testing for any WAF"
+description = "WAF Auditor — bypass & false-positive testing for any WAF"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "Proprietary" }

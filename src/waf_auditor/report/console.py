@@ -1,5 +1,5 @@
 """
-Mikiri WAF Auditor
+WAF Auditor
 Copyright (c) Mikiri Security, LLC
 Author: Romanov R.
 
@@ -54,7 +54,7 @@ def render(score: Score, results: list[Result], console: Console | None = None) 
     header.append(f"Total test cases: {score.total}")
     if score.overall.error:
         header.append(f"   (errors: {score.overall.error})", style="dim")
-    console.print(Panel(header, title="Mikiri WAF Auditor", border_style=color, expand=False))
+    console.print(Panel(header, title="WAF Auditor", border_style=color, expand=False))
 
     _breakdown_table(console, "Detection by attack category", score.by_category)
     _breakdown_table(console, "By transport", score.by_transport)

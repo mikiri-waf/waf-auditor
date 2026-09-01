@@ -1,4 +1,8 @@
-# Mikiri WAF Auditor
+# WAF Auditor
+
+**Check your WAF before an attacker does**
+
+WAF Auditor - a technical tool for testing any WAF for **attack bypasses** and **false positives**. Output comes as a console table, machine-readable JSON, and a PDF with charts.
 
 ## Legal & Ethical Use
 
@@ -12,9 +16,7 @@ solely responsible for how you use it and for obtaining proper authorization. Th
 Mikiri Security, LLC accept no liability for misuse or for any damage resulting from its use.
 By using this tool you agree to these terms.
 
-A technical tool for testing any WAF for **attack bypasses** and **false positives**.
-
-Output comes as a console table, machine-readable JSON, and a PDF with charts.
+<hr>
 
 ## Installation
 

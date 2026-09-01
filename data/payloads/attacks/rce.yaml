@@ -3,7 +3,7 @@ kind: attack
 category: rce
 expected: blocked
 severity: critical
-description: "OS Command Injection / RCE — Mikiri curated set"
+description: "OS Command Injection / RCE — WAF Auditor curated set"
 references: ["CWE-77", "CWE-78", "OWASP-A03:2021"]
 
 default_placements: [url_query, header, cookie, body_urlencoded, body_json]
