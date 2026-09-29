@@ -21,29 +21,32 @@ By using this tool you agree to these terms.
 ## Installation
 
 ```bash
-python3.11 -m venv .venv
-source .venv/bin/activate
-pip install -e '.[dev]'          # core + tests/linter
+python3.11 -m venv /opt/venv
+/opt/venv/bin/pip install -e '.[dev]'          # core + tests/linter
 ```
+
+Run the package with the interpreter from that environment. No shell activation is required.
+Commands below assume the current directory is the repository root (`pip install -e` installs
+the tree you are in).
 
 ## Quick start
 
 ```bash
 # basic run against a target (a block is decided by the response status code)
-waf-auditor --url https://target.example/ --block-status 403
+/opt/venv/bin/python -m waf_auditor --url https://target.example/ --block-status 403
 
 # multiple transports and all report formats
-waf-auditor -u https://target.example/ -t http1 -t http2 \
+/opt/venv/bin/python -m waf_auditor -u https://target.example/ -t http1 -t http2 \
     --block-status 403 --block-status 406 \
     --json report.json --pdf report.pdf
 
 # only SQLi and XSS, only none/url encodings, with a rate limit
-waf-auditor -u https://target.example/ -s sqli -s xss \
+/opt/venv/bin/python -m waf_auditor -u https://target.example/ -s sqli -s xss \
     --encoders none,url --rate-limit 50
 
 # informational commands
-waf-auditor --list-suites
-waf-auditor --list-encoders
+/opt/venv/bin/python -m waf_auditor --list-suites
+/opt/venv/bin/python -m waf_auditor --list-encoders
 ```
 
 Exit code is `1` if any attack got through (a bypass) — handy for CI gates.
@@ -93,11 +96,11 @@ payloads:
 ## Development
 
 ```bash
-pytest            # unit tests
-ruff check src tests
+/opt/venv/bin/python -m pytest            # unit tests
+/opt/venv/bin/python -m ruff check src tests
 ```
 
-Local e2e: `python .env/mac/dev/mock_waf.py 8899` starts a naive signature-based "WAF" (it catches
+Local e2e: `/opt/venv/bin/python .env/mac/dev/mock_waf.py 8899` starts a naive signature-based "WAF" (it catches
 some raw payloads, lets double-encoded ones through, and over-blocks a couple of legitimate
 tokens) — useful for exercising the full pipeline.
 
