@@ -1,0 +1,31 @@
+suite: ssrf
+kind: attack
+category: ssrf
+expected: blocked
+severity: high
+description: "Server Side Request Forgery — WAF Auditor curated set"
+references: ["CWE-918", "OWASP-A01:2025"]
+
+default_placements: [url_query, url_path, body_urlencoded]
+default_encoders:
+  - [none]
+  - [url]
+  - [url_double]
+
+payloads:
+  - id: ssrf-passwd-0001
+    raw: "url=file:///e??/pa??wd"
+    tags: [unix]
+  - id: ssrf-passwd-0002
+    raw: "url=file:///etc/passwd?/../passwd"
+    tags: [unix]
+  - id: ssrf-passwd-0003
+    raw: "url=file:$(br)/et$(u)c%252Fpas$(te)swd%3F/"
+    tags: [file, unix]
+  - id: ssrf-wrapper-0004
+    raw: "url=file:/etc%252Fpasswd/"
+    tags: [file, unix]
+  - id: ssrf-data-0005
+    raw: "url=gopher://127.0.0.1:6379/_config%20set%20dbfilename%20reverse.php"
+    tags: [gopher]
+

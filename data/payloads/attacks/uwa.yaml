@@ -1,0 +1,36 @@
+suite: uwa
+kind: attack
+category: uwa
+expected: blocked
+severity: high
+description: "Unwanted Access — WAF Auditor curated set"
+
+default_placements: [url_query, url_path, body_urlencoded]
+default_encoders:
+  - [none]
+  - [url]
+  - [url_double]
+
+payloads:
+  - id: uwa-git-0001
+    raw: "/.git"
+    tags: [git]
+  - id: uwa-git-0002
+    raw: "/.git/index"
+    tags: [git]
+  - id: uwa-wp-0003
+    raw: "/wp-settings.php.swp"
+    tags: [wordpress]
+  - id: uwa-sql-0004
+    raw: "/%2e/dmp.sql"
+    tags: [file, sql]
+  - id: uwa-backup-0005
+    raw: "/%2e/backup.zip"
+    tags: [file, backup]
+  - id: uwa-php-0006
+    raw: "/%2e/config.php.bak"
+    tags: [file]
+  - id: uwa-png-0007
+    raw: "/do.php#.png"
+    tags: [file]
+
