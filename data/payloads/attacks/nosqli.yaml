@@ -1,0 +1,43 @@
+suite: nosqli
+kind: attack
+category: nosqli
+expected: blocked
+severity: high
+description: "NoSQL Injection — WAF Auditor curated set"
+references: ["CWE-943", "OWASP-A05:2025"]
+
+default_placements: [url_query, url_path, body_urlencoded, cookie]
+default_encoders:
+  - [none]
+  - [url]
+  - [url_double]
+
+payloads:
+  - id: nsqli-logic-0001
+    raw: "username[$ne]=1&password[$ne]=1"
+    tags: [nsqli]
+  - id: nsqli-spec-0002
+    raw: "' } ], $comment:'successful MongoDB injection'"
+    tags: [nsqli]
+  - id: nsqli-spec-0003
+    raw: "', $or: [ {}, { 'a':'a"
+    tags: [nsqli]
+  - id: nsqli-encode-0004
+    raw: "login%255B%2524gt%255D%3Dadmin%26login%255B%2524lt%255D%3Dtest%26pass%255B%2524ne%255D%3D1"
+    tags: [nsqli]
+  - id: nsqli-condition-0005
+    raw: "{\"$elemMatch\": {\"$gt\": 10}}"
+    tags: [nsqli]
+  - id: nsqli-expression-0006
+    raw: "{\"$expr\": {\"$eq\": [\"$role\", \"user\"]}}"
+    tags: [nsqli]
+  - id: nsqli-sleep-0007
+    raw: "';sleep(5000);"
+    tags: [nsqli]
+  - id: nsqli-nested-0008
+    raw: "{\"username\": \"testuser\",\"unexpected\": {\"$ne\": null}}"
+    tags: [nsqli]
+  - id: nsqli-function-0009
+    raw: "db.collection.find({$where:function(){return(this.name == $userData)}});"
+    tags: [nsqli]
+
