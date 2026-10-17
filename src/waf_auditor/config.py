@@ -26,7 +26,7 @@ class TargetConfig(BaseModel):
     extra_headers: dict[str, str] = Field(default_factory=dict)
     # Names used when a payload lands in a header / cookie / query / body field.
     query_param: str = "q"
-    header_name: str = "X-WAF-Auditor"
+    header_name: str = "X-W-Auditor"
     cookie_name: str = "waf_auditor"
     body_field: str = "field"
 

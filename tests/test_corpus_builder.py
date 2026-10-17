@@ -41,6 +41,19 @@ def test_build_query_placement_encodes_payload():
     assert "%27" in spec.query["q"]  # the apostrophe got URL-encoded
 
 
+def test_query_url_escapes_fragment_and_separator():
+    payloads = corpus.load_corpus(suites={"xss"})
+    p = next(p for p in payloads if p.id == "xss-basic-0001")
+    case = next(
+        c
+        for c in generate([p], [Transport.HTTP])
+        if c.placement == Placement.URL_QUERY and c.encoder_chain == ("html_entity_hex",)
+    )
+    url = build(case, _target()).url
+    assert "#" not in url and "&" not in url
+    assert "?q=%26%23x" in url
+
+
 def test_build_json_body_is_valid_json():
     payloads = corpus.load_corpus(suites={"sqli"})
     p = next(p for p in payloads if Placement.BODY_JSON in p.placements)

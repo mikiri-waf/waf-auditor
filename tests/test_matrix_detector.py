@@ -68,6 +68,41 @@ def test_only_encoders_filter():
     assert cases and all(c.encoder_chain == ("none",) for c in cases)
 
 
+def _combos(payload: Payload) -> set[tuple[str, str]]:
+    return {
+        (c.placement.value, "+".join(c.encoder_chain))
+        for c in matrix.generate([payload], [Transport.HTTP])
+    }
+
+
+def test_fragment_in_url_path_dropped():
+    p = _payload(
+        raw="/do.php#.png",
+        placements=(Placement.URL_PATH, Placement.URL_QUERY),
+        encoder_chains=(("none",), ("url",)),
+    )
+    assert _combos(p) == {
+        ("url_path", "url"),
+        ("url_query", "none"),
+        ("url_query", "url"),
+    }
+
+
+def test_encoded_path_above_root_dropped():
+    p = _payload(
+        raw="../../etc/passwd",
+        placements=(Placement.URL_PATH, Placement.URL_QUERY),
+        encoder_chains=(("none",), ("url",), ("url_double",)),
+    )
+    assert _combos(p) == {
+        ("url_path", "none"),
+        ("url_path", "url_double"),
+        ("url_query", "none"),
+        ("url_query", "url"),
+        ("url_query", "url_double"),
+    }
+
+
 def test_verdict_attack():
     assert verdict(Expected.BLOCKED, 403, [403]) == Verdict.DETECTED
     assert verdict(Expected.BLOCKED, 200, [403]) == Verdict.BYPASS

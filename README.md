@@ -44,6 +44,9 @@ the tree you are in).
 /opt/venv/bin/python -m waf_auditor -u https://target.example/ -s sqli -s xss \
     --encoders none,url --rate-limit 50
 
+# carry header payloads in a custom header name (default X-W-Auditor)
+/opt/venv/bin/python -m waf_auditor -u https://target.example/ --header-name X-ABC
+
 # informational commands
 /opt/venv/bin/python -m waf_auditor --list-suites
 /opt/venv/bin/python -m waf_auditor --list-encoders

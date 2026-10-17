@@ -52,6 +52,8 @@ def _parser() -> argparse.ArgumentParser:
     )
     tgt.add_argument("-H", "--header", action="append", default=[], metavar="K:V",
                      help="extra request header (repeatable)")
+    tgt.add_argument("--header-name", default=TargetConfig.model_fields["header_name"].default,
+                     metavar="NAME", help="header that carries the payload in the 'header' placement")
     tgt.add_argument("-k", "--insecure", action="store_true", help="do not verify TLS certs")
 
     sel = p.add_argument_group("selection")
@@ -140,6 +142,7 @@ def main(argv: list[str] | None = None) -> int:
         block_statuses=args.block_statuses or list(DEFAULT_BLOCK_STATUSES),
         verify_tls=not args.insecure,
         extra_headers=_parse_headers(args.header),
+        header_name=args.header_name,
     )
     cfg = RunConfig(
         target=target,

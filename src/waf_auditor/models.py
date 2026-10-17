@@ -132,7 +132,9 @@ class RequestSpec:
 
 def _identity_quote(string: str, safe: str, encoding: str, errors: str) -> str:
     # Query values are already encoded by the encoder chain; do not re-encode here.
-    return string
+    # Only '#' and '&' are escaped: otherwise the client cuts the value at a fragment
+    # or the server splits it into extra parameters.
+    return string.replace("#", "%23").replace("&", "%26")
 
 
 @dataclass(slots=True)
