@@ -33,7 +33,7 @@ def _payload(**kw) -> Payload:
 
 
 def test_ws_message_only_over_ws_transport():
-    cases = list(matrix.generate([_payload()], [Transport.HTTP1]))
+    cases = list(matrix.generate([_payload()], [Transport.HTTP]))
     assert all(c.placement != Placement.WS_MESSAGE for c in cases)
 
     ws_cases = list(matrix.generate([_payload()], [Transport.WS]))
@@ -44,7 +44,7 @@ def test_transport_modifier_deduped_on_non_body_placement():
     # url_query with ["url"] and ["url","gzip"] collapse to one case (gzip inert here).
     cases = [
         c
-        for c in matrix.generate([_payload()], [Transport.HTTP1])
+        for c in matrix.generate([_payload()], [Transport.HTTP])
         if c.placement == Placement.URL_QUERY
     ]
     chains = {"+".join(c.encoder_chain) for c in cases}
@@ -54,7 +54,7 @@ def test_transport_modifier_deduped_on_non_body_placement():
 def test_body_placement_keeps_modifier():
     cases = [
         c
-        for c in matrix.generate([_payload()], [Transport.HTTP1])
+        for c in matrix.generate([_payload()], [Transport.HTTP])
         if c.placement == Placement.BODY_JSON
     ]
     chains = {"+".join(c.encoder_chain) for c in cases}
@@ -63,7 +63,7 @@ def test_body_placement_keeps_modifier():
 
 def test_only_encoders_filter():
     cases = list(
-        matrix.generate([_payload()], [Transport.HTTP1], only_encoders={"none"})
+        matrix.generate([_payload()], [Transport.HTTP], only_encoders={"none"})
     )
     assert cases and all(c.encoder_chain == ("none",) for c in cases)
 

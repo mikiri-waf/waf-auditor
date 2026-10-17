@@ -143,7 +143,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     cfg = RunConfig(
         target=target,
-        transports=[Transport(t) for t in (args.transports or ["http1"])],
+        transports=[Transport(t) for t in (args.transports or ["http"])],
         placements=[Placement(p) for p in args.placements] if args.placements else None,
         suites=args.suites,
         only_encoders=[e.strip() for e in args.encoders.split(",")] if args.encoders else None,

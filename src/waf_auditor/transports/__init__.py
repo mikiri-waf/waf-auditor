@@ -16,8 +16,8 @@ __all__ = ["BaseTransport", "TransportResponse", "build_transport"]
 
 
 def build_transport(transport: Transport, cfg: RunConfig) -> BaseTransport:
-    if transport in (Transport.HTTP1, Transport.HTTP2):
-        from .http1_2 import HttpxTransport
+    if transport == Transport.HTTP:
+        from .http import HttpxTransport
 
         return HttpxTransport(
             transport,

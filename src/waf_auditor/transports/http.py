@@ -3,7 +3,7 @@ WAF Auditor
 Copyright (c) Mikiri Security, LLC
 Author: Romanov R.
 
-HTTP/1.1 and HTTP/2 transport built on httpx.
+HTTP/1.1 transport built on httpx.
 """
 
 from __future__ import annotations
@@ -25,12 +25,12 @@ class HttpxTransport(BaseTransport):
         timeout_s: float = 15.0,
         limits_concurrency: int = 20,
     ) -> None:
-        if transport not in (Transport.HTTP1, Transport.HTTP2):
+        if transport != Transport.HTTP:
             raise ValueError(f"HttpxTransport does not support {transport}")
         self.transport = transport
         self._client = httpx.AsyncClient(
-            http1=(transport == Transport.HTTP1),
-            http2=(transport == Transport.HTTP2),
+            http1=True,
+            http2=False,
             verify=verify_tls,
             timeout=timeout_s,
             follow_redirects=False,

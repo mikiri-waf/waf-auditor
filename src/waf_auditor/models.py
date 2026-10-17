@@ -45,8 +45,7 @@ class Placement(StrEnum):
 
 
 class Transport(StrEnum):
-    HTTP1 = "http1"
-    HTTP2 = "http2"
+    HTTP = "http"  # HTTP/1.1
     WS = "ws"
 
 

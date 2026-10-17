@@ -64,7 +64,7 @@ class RunConfig(BaseModel):
     """How to run the audit."""
 
     target: TargetConfig
-    transports: list[Transport] = Field(default_factory=lambda: [Transport.HTTP1])
+    transports: list[Transport] = Field(default_factory=lambda: [Transport.HTTP])
     placements: list[Placement] | None = None   # None = whatever each payload allows
     suites: list[str] | None = None             # None = all
     only_encoders: list[str] | None = None       # restrict chains to those containing only these

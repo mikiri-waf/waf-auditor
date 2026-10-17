@@ -36,7 +36,7 @@ the tree you are in).
 /opt/venv/bin/python -m waf_auditor --url https://target.example/ --block-status 403
 
 # multiple transports and all report formats
-/opt/venv/bin/python -m waf_auditor -u https://target.example/ -t http1 -t http2 \
+/opt/venv/bin/python -m waf_auditor -u https://target.example/ -t http -t ws \
     --block-status 403 --block-status 406 \
     --json report.json --pdf report.pdf
 
@@ -62,7 +62,7 @@ nothing about transport, injection point, or encoding — the engine combines al
 - **Encoder-chain** — how it is encoded (composable): `url`, `url_double`, `url_triple`,
   `base64`, `html_entity_*`, `unicode_escape`, `charset_utf16`, … plus the body transport
   modifiers `gzip`/`deflate`/`chunked`.
-- **Transport** — `http1`, `http2`, `ws`.
+- **Transport** — `http` (HTTP/1.1), `ws`.
 
 Block detection is **based on the HTTP response status code** (a configurable set of statuses
 per target).
@@ -106,7 +106,7 @@ tokens) — useful for exercising the full pipeline.
 
 ## Roadmap
 
-- **Phase 1 (done):** HTTP/1.1+2, WebSocket transport, all axes, console/JSON/PDF.
+- **Phase 1 (done):** HTTP/1.1, WebSocket transport, all axes, console/JSON/PDF.
 - **Phase 2:** richer WebSocket scenarios, a "glossy" PDF (WeasyPrint), deeper multipart/XML
   placements, expanded payload sets.
 
