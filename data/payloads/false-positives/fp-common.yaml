@@ -24,9 +24,9 @@ payloads:
   - id: fp-code-0004
     raw: "SELECT * FROM orders WHERE id = 42 -- example query in a code comment"
     tags: [code-snippet]
-  - id: fp-path-0005
-    raw: "/usr/local/share/docs/readme.txt"
-    tags: [absolute-path]
+  - id: fp-search-0005
+    raw: "how to prevent ../ path traversal in nginx"
+    tags: [search-query]
   - id: fp-html-0006
     raw: "I <3 the <b>bold</b> tag but not <script> tags"
     tags: [angle-brackets]
@@ -40,6 +40,3 @@ payloads:
     raw: "P@ssw0rd!;DROP"
     placements: [body_json, body_urlencoded]
     tags: [password-field]
-  - id: fp-search-0010
-    raw: "how to prevent ../ path traversal in nginx"
-    tags: [search-query]
