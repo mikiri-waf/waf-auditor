@@ -19,12 +19,12 @@ from ..config import RunConfig
 from ..models import Result
 from .scoring import Score, bypasses, false_positives
 
-# Mikiri WAF brand palette (derived from the mikiri.ai product UI: deep navy + brand blue
+# Mikiri brand palette (derived from the mikiri.ai product UI: deep navy + brand blue
 # on slate greys, with emerald/amber/red reserved for detection semantics).
 NAVY = "#080d17"      # darkest brand surface — KPI header / title bar
 INK = "#1e293b"       # slate-800 — headings and primary text
 MUTED = "#64748b"     # slate-500 — secondary text
-ACCENT = "#3b82f6"    # Mikiri WAF brand blue
+ACCENT = "#3b82f6"    # Mikiri brand blue
 ACCENT_DK = "#2563eb"  # brand blue, pressed
 GOOD = "#10b981"      # emerald — strong detection
 WARN = "#f59e0b"      # amber — partial detection
@@ -36,7 +36,7 @@ _GRADE_HEX = {"A+": GOOD, "A": GOOD, "B": ACCENT, "C": WARN, "D": WARN, "F": BAD
 
 
 def _brand_cmap():
-    """Sequential red -> amber -> emerald colormap in Mikiri WAF's semantic colors."""
+    """Sequential red -> amber -> emerald colormap in Mikiri's semantic colors."""
     from matplotlib.colors import LinearSegmentedColormap
 
     return LinearSegmentedColormap.from_list("mikiri_rag", [BAD, WARN, GOOD])
@@ -490,7 +490,7 @@ def write(
                                  textColor=colors.HexColor("#cbd5e1"), leading=14)
     cta = Table(
         [[Paragraph("REQUEST EVALUATION", cta_kicker)],
-         [Paragraph("Deploy Mikiri WAF in your environment and evaluate its "
+         [Paragraph("Deploy Mikiri in your environment and evaluate its "
                     "application security capabilities.", cta_line)],
          [Paragraph(
              '<a href="https://mikiri.ai" color="#93c5fd"><u>mikiri.ai</u></a>'
